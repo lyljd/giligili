@@ -1,0 +1,6 @@
+.idea
+.env
+go.sum
+.DS_Store
+giligili_resource
+resource
