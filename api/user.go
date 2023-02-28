@@ -6,9 +6,14 @@ import (
 	"giligili/service/common"
 	"giligili/service/user"
 	"github.com/gin-gonic/gin"
+	"os"
 )
 
 func Register(c *gin.Context) {
+	if os.Getenv("OPENAPI_REGISTER") != "true" {
+		c.JSON(200, serializer.NoPower("服务器已关闭用户注册接口", nil))
+		return
+	}
 	var s user.RegisterService
 	if err := c.ShouldBind(&s); err == nil {
 		res := s.Register()
